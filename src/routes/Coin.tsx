@@ -1,4 +1,4 @@
-import { Link, Switch, Route, useLocation, useParams, useRouteMatch } from 'react-router-dom';
+import { Link, Switch, Route, useLocation, useParams, useRouteMatch, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import Chart from './Chart';
@@ -16,7 +16,8 @@ const Container = styled.div`
 const Header = styled.header`
   height: 10vh;
   display: flex;
-  justify-content: center;
+  position: relative;
+  //justify-content: center;
   align-items: center;
   margin-bottom: 30px;
 `;
@@ -24,11 +25,28 @@ const Header = styled.header`
 const Title = styled.h1`
   font-size: 48px;
   color: ${(props) => props.theme.accentColor};
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 const Loader = styled.div`
   text-align: center;
   display: block;
+`;
+
+const BtnBack = styled.button`
+  font-size: 28px;
+  width: 35px;
+  height: 35px;
+  background-color: inherit;
+  //border: none;
+  color: ${(props) => props.theme.accentColor};
+  a {
+    display: block;
+    width: 35px;
+    height: 35px;
+  }
 `;
 
 const Overview = styled.div`
@@ -167,12 +185,14 @@ const Coin = () => {
   }, []); */
 
   const loading = infoLoading || tickersLoading;
+  const history = useHistory();
   return (
     <Container>
       <Helmet>
         <title>{state?.name ? state.name : loading ? 'Loading...' : infoData?.name}</title>
       </Helmet>
       <Header>
+        <BtnBack onClick={history.goBack}>&lt;</BtnBack>
         <Title>{state?.name ? state.name : loading ? 'Loading...' : infoData?.name}</Title>
       </Header>
       {loading ? (
