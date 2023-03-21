@@ -222,7 +222,14 @@ const Coin = () => {
           </Overview>
           <Switch>
             <Route path={`/${coinId}/price`}>
-              <Price />
+              <Price
+                percent30m={tickersData?.quotes.USD.percent_change_30m}
+                percent1h={tickersData?.quotes.USD.percent_change_1h}
+                percent12h={tickersData?.quotes.USD.percent_change_12h}
+                percent7d={tickersData?.quotes.USD.percent_change_7d}
+                percent30d={tickersData?.quotes.USD.percent_change_30d}
+                percent1y={tickersData?.quotes.USD.percent_change_1y}
+              />
             </Route>
             <Route path={`/${coinId}/chart`}>
               <Chart coinId={coinId} />
