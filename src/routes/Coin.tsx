@@ -42,11 +42,6 @@ const BtnBack = styled.button`
   background-color: inherit;
   //border: none;
   color: ${(props) => props.theme.accentColor};
-  a {
-    display: block;
-    width: 35px;
-    height: 35px;
-  }
 `;
 
 const Overview = styled.div`
@@ -185,14 +180,15 @@ const Coin = () => {
   }, []); */
 
   const loading = infoLoading || tickersLoading;
-  const history = useHistory();
   return (
     <Container>
       <Helmet>
         <title>{state?.name ? state.name : loading ? 'Loading...' : infoData?.name}</title>
       </Helmet>
       <Header>
-        <BtnBack onClick={history.goBack}>&lt;</BtnBack>
+        <BtnBack>
+          <Link to={'/'}>&lt;</Link>
+        </BtnBack>
         <Title>{state?.name ? state.name : loading ? 'Loading...' : infoData?.name}</Title>
       </Header>
       {loading ? (
