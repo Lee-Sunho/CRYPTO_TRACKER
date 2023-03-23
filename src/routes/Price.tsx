@@ -8,8 +8,8 @@ const Container = styled.div`
   grid-template-columns: repeat(2, 1fr);
 `;
 
-const Box = styled.div`
-  background-color: white;
+const Box = styled.div<{ isDark: boolean }>`
+  background-color: ${(props) => (props.isDark ? 'transparent' : 'white')};
   padding: 20px;
   border-radius: 15px;
   width: 100%;
@@ -30,6 +30,7 @@ const Percent = styled.span<{ percent: number | undefined }>`
 `;
 
 interface IPriceProps {
+  isDark: boolean;
   percent30m: number | undefined;
   percent1h: number | undefined;
   percent12h: number | undefined;
@@ -38,7 +39,7 @@ interface IPriceProps {
   percent1y: number | undefined;
 }
 
-const Price = ({ percent30m, percent1h, percent12h, percent7d, percent30d, percent1y }: IPriceProps) => {
+const Price = ({ isDark, percent30m, percent1h, percent12h, percent7d, percent30d, percent1y }: IPriceProps) => {
   const percentList = [
     { text: '30m', value: percent30m },
     { text: '1h', value: percent1h },
@@ -50,7 +51,7 @@ const Price = ({ percent30m, percent1h, percent12h, percent7d, percent30d, perce
   return (
     <Container>
       {percentList.map((item) => (
-        <Box key={item.text}>
+        <Box isDark={isDark} key={item.text}>
           <Time>From {item.text} ago</Time>
           <Percent percent={item.value}>{item.value && item.value > 0 ? `+${item.value}%` : `${item.value}%`}</Percent>
         </Box>
