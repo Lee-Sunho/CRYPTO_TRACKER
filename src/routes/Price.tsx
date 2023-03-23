@@ -1,4 +1,6 @@
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
+import { isDarkAtom } from '../atoms';
 
 const Container = styled.div`
   margin-top: 25px;
@@ -30,7 +32,6 @@ const Percent = styled.span<{ percent: number | undefined }>`
 `;
 
 interface IPriceProps {
-  isDark: boolean;
   percent30m: number | undefined;
   percent1h: number | undefined;
   percent12h: number | undefined;
@@ -39,7 +40,8 @@ interface IPriceProps {
   percent1y: number | undefined;
 }
 
-const Price = ({ isDark, percent30m, percent1h, percent12h, percent7d, percent30d, percent1y }: IPriceProps) => {
+const Price = ({ percent30m, percent1h, percent12h, percent7d, percent30d, percent1y }: IPriceProps) => {
+  const isDark = useRecoilValue(isDarkAtom);
   const percentList = [
     { text: '30m', value: percent30m },
     { text: '1h', value: percent1h },
