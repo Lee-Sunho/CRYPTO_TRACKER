@@ -6,6 +6,8 @@ import { fetchCoins } from '../api';
 import { Helmet } from 'react-helmet';
 import { isDarkAtom } from './../atoms';
 import { useSetRecoilState } from 'recoil';
+import { faSun } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -16,7 +18,7 @@ const Container = styled.div`
 const Header = styled.header`
   height: 10vh;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
 `;
@@ -45,6 +47,7 @@ const Coin = styled.li`
 const Title = styled.h1`
   font-size: 48px;
   color: ${(props) => props.theme.accentColor};
+  margin: 0 auto;
 `;
 
 const Loader = styled.div`
@@ -56,6 +59,14 @@ const Img = styled.img`
   width: 35px;
   height: 35px;
   margin-right: 10px;
+`;
+
+const Icon = ({ func }: any) => {
+  return <FontAwesomeIcon icon={faSun} size="2x" onClick={func} />;
+};
+
+const ModeButton = styled(Icon)`
+  justify-self: flex-end;
 `;
 
 interface ICoin {
@@ -93,7 +104,7 @@ const Coins = ({}: ICoinsProps) => {
       </Helmet>
       <Header>
         <Title>Coins</Title>
-        <button onClick={toggleDarkAtom}>Toggle Mode</button>
+        <ModeButton func={toggleDarkAtom} />
       </Header>
       {isLoading ? (
         <Loader>Loading...</Loader>
