@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/crypto_tracker/static/js/main.98d7a7f9.js",
-    "index.html": "/crypto_tracker/index.html",
-    "main.98d7a7f9.js.map": "/crypto_tracker/static/js/main.98d7a7f9.js.map"
+    "main.js": "/CRYPTO_TRACKER/static/js/main.e7440e4c.js",
+    "index.html": "/CRYPTO_TRACKER/index.html",
+    "main.e7440e4c.js.map": "/CRYPTO_TRACKER/static/js/main.e7440e4c.js.map"
   },
   "entrypoints": [
-    "static/js/main.98d7a7f9.js"
+    "static/js/main.e7440e4c.js"
   ]
 }
